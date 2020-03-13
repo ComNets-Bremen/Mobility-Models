@@ -11,5 +11,6 @@ simple CMMcoordinator{
         string address = default("");
         int numMatrix = default(0);
         bool isRandom = default(true);
+        int usedRNG = default(0);
         @display("i=old/x_yellow;is=n");
 }

@@ -1,5 +1,0 @@
-1. Make sure that you have inet4 and it is in your workspace folder
-2. Copy the 3 folders into your workspace folder (Select Merge)
-3. If you want to try the mobility models with random configuration, change the omnetpp.ini to true in the variables isRandom (for CMM), isProbabilityRandom (for SOLAR), and isPositionRandom (for SOLAR).
-4. If you want to run the mobility models with precalculated matrices, check in omnetpp.ini the parameters address (for CMM), probabilityAddress (for SOLAR), and positionAddress (for SOLAR) and change the path /home/leonardo/Desktop/w_comnets to the path of your workspace folder. (The name of the files is the execution order).
-5. Enjoy!

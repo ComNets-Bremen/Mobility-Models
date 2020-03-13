@@ -22,7 +22,7 @@ namespace inet {
         }
         MatrixXd position(numplaces,2);
         for (int i=0;i<numplaces;i++){
-            int randindex=uniform(0,numrow*numcol-i-2);
+            int randindex=uniform(0,numrow*numcol-i-2, usedRNG);
             position(i,0)=Xp(randindex);
             Xp(randindex)=Xp(numrow*numcol-i-1);
             position(i,1)=Yp(randindex);
@@ -40,7 +40,7 @@ namespace inet {
             MatrixXd matrix(numhost,numhost);
             for (int i=0;i<numhost;i++){
                 for (int j=0;j<numhost;j++){
-                    matrix(i,j)=uniform(0,1);
+                    matrix(i,j)=uniform(0,1, usedRNG);
                 }
             }
             mask=MatrixXd::Constant(numhost,numhost,1.)-(MatrixXd)VectorXd::Constant(numhost,1.).asDiagonal();
@@ -152,6 +152,7 @@ namespace inet {
             address=par("address");
             currentMatrix=0;
         }
+        usedRNG = par("usedRNG");
         cmmconf=CMMconfiguration(cmmnumhost,cmmthreshold,cmmenviroment);
         cmmgroup=cmmconf.group;
         cMessage *schedule =new cMessage("Schedule");
@@ -178,8 +179,8 @@ namespace inet {
         sposition pos;
         cmmproc=CMMprocess(cmmconf,cmmgroup,cmmhrange);
         cmmgroup=cmmproc.group;
-        pos.x=cmmproc.hposition(index,0)+uniform(0, cmmhrange);
-        pos.y=cmmproc.hposition(index,1)+uniform(0, cmmhrange);
+        pos.x=cmmproc.hposition(index,0)+uniform(0, cmmhrange, usedRNG);
+        pos.y=cmmproc.hposition(index,1)+uniform(0, cmmhrange, usedRNG);
         return pos;
     }
 } //namespace

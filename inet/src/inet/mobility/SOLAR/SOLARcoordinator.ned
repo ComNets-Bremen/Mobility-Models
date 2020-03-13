@@ -12,5 +12,6 @@ simple SOLARcoordinator{
         int numMatrix = default(0);
         bool isPositionRandom = default(true);
         bool isProbabilityRandom = default(true);        
+        int usedRNG = default(0);
         @display("i=old/x_yellow;is=n");
 }

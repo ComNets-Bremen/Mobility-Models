@@ -1,11 +1,11 @@
-#ifndef __INET_CMMMEMBER_H
-#define __INET_CMMMEMBER_H
+#ifndef __INET_SOLAREMBER_H
+#define __INET_SOLARMEMBER_H
 #include <inet/libraries/structures.h>
 #include "inet/common/INETDefs.h"
 #include "inet/mobility/base/LineSegmentsMobilityBase.h"
 using namespace omnetpp;
 namespace inet {
-    class INET_API CMMmember : public LineSegmentsMobilityBase{
+    class INET_API SOLARmember : public LineSegmentsMobilityBase{
       protected:
         bool nextMoveIsWait;
       protected:
@@ -17,13 +17,18 @@ namespace inet {
         /** @brief Overridden from LineSegmentsMobilityBase.*/
         virtual void move() override;
         virtual Coord setNewPosition();
-        int cmmide;
-        sposition cmmpos;
-        cModule *cmmparent;
-        cModule *cmmsimulation;
-        cModule *cmmsubmod;
+        virtual sposition setNewGroup();
+        //virtual void handleMessage(cMessage *msg);
+        int solaride;
+        sposition solarpos;
+        cModule *solarparent;
+        cModule *solarsimulation;
+        cModule *solarsubmod;
+        double solartupdate;
+        simtime_t targettime;
+        int usedRNG;
       public:
-        CMMmember();
+        SOLARmember();
         virtual double getMaxSpeed() const override;
     };
 } // namespace inet

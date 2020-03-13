@@ -10,6 +10,7 @@ simple SOLARmember extends MovingMobilityBase{
         volatile double intraspeed @unit(mps) = default(mps); // use uniform(minSpeed, maxSpeed) or another distribution
         volatile double waitTime @unit(s) = default(0s); // wait time between reaching a target and choosing a new one
         double tupdate = default(0); //Update time
+        int usedRNG = default(0);
         @class(SOLARmember);
         @display("i=abstract/person;is=s");
 }

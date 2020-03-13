@@ -33,6 +33,7 @@ namespace inet {
             int numMatrix;
             bool isRandom;
             int currentMatrix;
+            int usedRNG;
         public:
             sposition CMMgetPosition(int index);
     };

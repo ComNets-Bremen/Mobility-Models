@@ -13,7 +13,7 @@ namespace inet {
                 Yp.segment(i*numcol,numcol)=VectorXd::Constant(numcol,i*solarhrange);
             }
             for (int i=0;i<numplaces;i++){
-                int randindex=uniform(0,numrow*numcol-i-2);
+                int randindex=uniform(0,numrow*numcol-i-2, usedRNG);
                 position(i,0)=Xp(randindex);
                 Xp(randindex)=Xp(numrow*numcol-i-1);
                 position(i,1)=Yp(randindex);
@@ -33,7 +33,7 @@ namespace inet {
     }
     VectorXd SOLARcoordinator::SOLARrandomSort(VectorXd vector, int size){
         for (int i=0;i<size-3;i++){
-            int randindex=uniform(0,size-2-i);
+            int randindex=uniform(0,size-2-i, usedRNG);
             double aux=vector(randindex);
             vector(randindex)=vector(size-1-i);
             vector(size-1-i)=aux;
@@ -53,10 +53,10 @@ namespace inet {
             matrix=MatrixXd::Zero(numplaces,numhost);
             for (int i=0;i<numhost;i++){
                 sortedplaces=SOLARrandomSort(nosortedplaces,numplaces);
-                int placesxhost=uniform(1,numplaces);
+                int placesxhost=uniform(1,numplaces, usedRNG);
                 for (int j=0;j<placesxhost;j++){
                     int randomplace=sortedplaces(j);
-                    matrix(randomplace,i)=uniform(0,1);
+                    matrix(randomplace,i)=uniform(0,1, usedRNG);
                 }
             }
             sumvec=matrix.colwise().sum();
@@ -85,7 +85,7 @@ namespace inet {
         VectorXd vector(numplaces);
         VectorXd mask(numplaces);
         double rscalar;
-        rscalar=uniform(0,1);
+        rscalar=uniform(0,1, usedRNG);
         mask=VectorXd::Constant(numplaces,rscalar);
         vector=interm.content.col(host)-mask;
         vector=(vector.array()<=0).select(VectorXd::Constant(numplaces,1.),VectorXd::Constant(numplaces,0.));
@@ -123,6 +123,7 @@ namespace inet {
                 probabilitiesAddress=par("probabilitiesAddress");
             }
         }
+        usedRNG = par("usedRNG");
         solarconf=SOLARconfiguration(solarnumhost,solarnumplaces,solarenviroment);
         solargroup=solarconf.group;
         cMessage *schedule =new cMessage("Schedule");

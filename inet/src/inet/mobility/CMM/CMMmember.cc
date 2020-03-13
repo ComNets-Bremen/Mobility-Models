@@ -12,6 +12,7 @@ namespace inet {
     }
     void CMMmember::initialize(int stage) {
         LineSegmentsMobilityBase::initialize(stage);
+        usedRNG = par("usedRNG");
         if (stage == INITSTAGE_LOCAL) {
             stationary = (par("speed").getType() == 'L' || par("speed").getType() == 'D') && (double)par("speed") == 0;
         }

@@ -15,6 +15,7 @@ namespace inet {
     }
     void SOLARmember::initialize(int stage) {
         solartupdate=par("tupdate");
+        usedRNG = par("usedRNG");
         LineSegmentsMobilityBase::initialize(stage);
         if (stage == INITSTAGE_LOCAL) {
             stationary = (par("intraspeed").getType() == 'L' || par("intraspeed").getType() == 'D') && (double)par("intraspeed") == 0;
@@ -33,8 +34,8 @@ namespace inet {
         SOLARcoordinator *target = check_and_cast<SOLARcoordinator *>(solarsubmod);
         range = target->SOLARgetRange();
         Coord theTarget=targetPosition;
-        theTarget.x = solarpos.x+uniform(0,range);
-        theTarget.y = solarpos.y+uniform(0,range);
+        theTarget.x = solarpos.x+uniform(0,range, usedRNG);
+        theTarget.y = solarpos.y+uniform(0,range, usedRNG);
         return theTarget;
     }
     sposition SOLARmember::setNewGroup(){

@@ -32,6 +32,7 @@ namespace inet {
             bool isPositionRandom;
             bool isProbabilityRandom;
             int currentMatrix;
+            int usedRNG;
         public:
             sposition SOLARgetPosition(int index);
             double SOLARgetRange();
