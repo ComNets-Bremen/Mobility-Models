@@ -1,4 +1,4 @@
-#ifndef __INET_SOLAREMBER_H
+#ifndef __INET_SOLARMEMBER_H
 #define __INET_SOLARMEMBER_H
 #include <inet/libraries/structures.h>
 #include "inet/common/INETDefs.h"
